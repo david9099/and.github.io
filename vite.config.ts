@@ -6,5 +6,5 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
-  base: '/restaurant-intake-system/', // Update this to match your repository name
+  base: '/and.github.io/', // Updated to match your repository name
 });
