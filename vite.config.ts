@@ -6,5 +6,5 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
-  base: '/and.github.io/', // Updated to match your repository name
+  base: '/and.github.io/', // Set the correct base URL for your repository
 });
