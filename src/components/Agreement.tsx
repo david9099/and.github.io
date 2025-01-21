@@ -60,6 +60,11 @@ export default function Agreement() {
           
           <p className="mb-6">"{serviceProvided}"</p>
           
+          <p className="mb-6">
+            (All Fees need to plus tax and disbursement). The legal fee does not cover any third-party costs. 
+            Additional fees will apply if extra services are required during the transaction.
+          </p>
+          
           <p className="mb-6">With client code of "{guestCode}"</p>
           
           <p className="mb-6">{mainCode}</p>
