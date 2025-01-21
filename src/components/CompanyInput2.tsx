@@ -14,6 +14,7 @@ export default function CompanyInput2() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loginCode, setLoginCode] = useState('');
   const [error, setError] = useState('');
+  const [showDuplicateError, setShowDuplicateError] = useState(false);
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<CompanyFormData>();
 
@@ -41,6 +42,17 @@ export default function CompanyInput2() {
 
   const onSubmit = async (data: CompanyFormData) => {
     try {
+      // Check for duplicate main code
+      const existingRecord = await pb.collection('company_records').getFirstListItem(`mainCode="${data.mainCode}"`).catch(() => null);
+      
+      if (existingRecord) {
+        setShowDuplicateError(true);
+        setTimeout(() => {
+          setShowDuplicateError(false);
+        }, 5000);
+        return;
+      }
+
       await pb.collection('company_records').create(data);
       const result = window.confirm('Thank you!');
       if (result) {
@@ -101,6 +113,17 @@ export default function CompanyInput2() {
           <div className="mb-6 p-4 bg-gray-50 rounded-lg">
             <h3 className="text-lg font-medium text-gray-900 mb-2">Previous Main Code:</h3>
             <p className="text-gray-600">{previousCode}</p>
+          </div>
+        )}
+
+        {showDuplicateError && (
+          <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="fixed inset-0 bg-black opacity-50"></div>
+            <div className="bg-white rounded-lg p-8 z-10 shadow-xl max-w-md w-full mx-4">
+              <p className="text-2xl text-center font-bold text-red-600">
+                Error! Duplicate value entered.
+              </p>
+            </div>
           </div>
         )}
 

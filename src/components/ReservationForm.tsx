@@ -42,7 +42,7 @@ export default function ReservationForm() {
     <div className="max-w-2xl mx-auto p-6">
       <div className="bg-white rounded-lg shadow-xl p-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Please fill the following</h1>
-        <p className="text-gray-600 mb-6">We keep your information confidential and will not disclose it to anyone without your consent.</p>
+        <p className="text-orange-600 mb-6 italic">We keep your information confidential and will not disclose it to anyone without your consent.</p>
         
         {showThankYou && (
           <div className="fixed inset-0 flex items-center justify-center z-50">
