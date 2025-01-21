@@ -8,25 +8,25 @@ export default function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex">
             <Link to="/" className="flex items-center">
-              <span className="text-xl font-bold text-gray-900">Anderson Input</span>
+              <span className="text-xl font-bold text-gray-900">Anderson Input Form</span>
             </Link>
           </div>
           <div className="flex items-center space-x-4">
             <Link
               to="/"
-              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
+              className="text-blue-600 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium"
             >
               Home
             </Link>
             <Link
               to="/guest-signin"
-              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
+              className="text-blue-600 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium"
             >
               Guest Sign In
             </Link>
             <Link
               to="/company-input2"
-              className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
+              className="text-blue-600 hover:text-blue-800 px-3 py-2 rounded-md text-sm font-medium"
             >
               Company Input2
             </Link>

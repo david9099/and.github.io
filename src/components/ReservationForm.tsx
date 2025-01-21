@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { pb } from '../lib/pocketbase';
 
@@ -11,6 +11,7 @@ type ReservationFormData = {
 
 export default function ReservationForm() {
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ReservationFormData>();
+  const [showThankYou, setShowThankYou] = useState(false);
 
   const onSubmit = async (data: ReservationFormData) => {
     try {
@@ -22,10 +23,11 @@ export default function ReservationForm() {
       };
 
       await pb.collection('reservations').create(formData);
-      const result = window.confirm('Thank you!');
-      if (result) {
-        reset();
-      }
+      reset();
+      setShowThankYou(true);
+      setTimeout(() => {
+        setShowThankYou(false);
+      }, 5000);
     } catch (error) {
       console.error('Form submission error:', error);
       if (error instanceof Error) {
@@ -39,11 +41,25 @@ export default function ReservationForm() {
   return (
     <div className="max-w-2xl mx-auto p-6">
       <div className="bg-white rounded-lg shadow-xl p-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-6">Please fill the following</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Please fill the following</h1>
+        <p className="text-gray-600 mb-6">We keep your information confidential and will not disclose it to anyone without your consent.</p>
+        
+        {showThankYou && (
+          <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="fixed inset-0 bg-black opacity-50"></div>
+            <div className="bg-white rounded-lg p-8 z-10 shadow-xl max-w-md w-full mx-4">
+              <p className="text-4xl text-center font-bold text-red-600">
+                You have submitted information. Thank you!
+              </p>
+            </div>
+          </div>
+        )}
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              Name <span className="text-gray-500 text-sm">(Last name, First name)</span>
+            </label>
             <input
               id="name"
               type="text"
