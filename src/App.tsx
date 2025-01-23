@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ReservationForm from './components/ReservationForm';
 import CompanyInput2 from './components/CompanyInput2';
 import CompanyList from './components/CompanyList';
+import List2 from './components/List2';
 import GuestSignIn from './components/GuestSignIn';
 import Agreement from './components/Agreement';
 import CodeError from './components/CodeError';
@@ -21,6 +22,7 @@ function App() {
             <Route path="/" element={<ReservationForm />} />
             <Route path="/company-input2" element={<CompanyInput2 />} />
             <Route path="/list" element={<CompanyList />} />
+            <Route path="/list2" element={<List2 />} />
             <Route path="/guest-signin" element={<GuestSignIn />} />
             <Route path="/agreement" element={<Agreement />} />
             <Route path="/code-error" element={<CodeError />} />
