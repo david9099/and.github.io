@@ -68,6 +68,10 @@ export default function CompanyInput2() {
     navigate('/list');
   };
 
+  const handleList2Click = () => {
+    navigate('/list2');
+  };
+
   if (!isLoggedIn) {
     return (
       <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -185,6 +189,14 @@ export default function CompanyInput2() {
               className="w-full bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
             >
               View List
+            </button>
+
+            <button
+              type="button"
+              onClick={handleList2Click}
+              className="w-full bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+            >
+              View Input
             </button>
           </div>
         </form>
