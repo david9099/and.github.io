@@ -19,9 +19,6 @@ export default function Agreement() {
       
       if (existingAgreement) {
         setShowMessage({ type: 'error', show: true });
-        setTimeout(() => {
-          setShowMessage({ type: 'error', show: false });
-        }, 5000);
         return;
       }
 
@@ -36,13 +33,16 @@ export default function Agreement() {
       
       setIsSubmitted(true);
       setShowMessage({ type: 'success', show: true });
-      setTimeout(() => {
-        setShowMessage({ type: 'success', show: false });
-        navigate('/');
-      }, 5000);
     } catch (error) {
       console.error('Error submitting agreement:', error);
       alert('Error submitting agreement. Please try again.');
+    }
+  };
+
+  const handleClosePopup = () => {
+    setShowMessage({ type: 'success', show: false });
+    if (showMessage.type === 'success') {
+      navigate('/');
     }
   };
 
@@ -111,12 +111,20 @@ export default function Agreement() {
         {showMessage.show && (
           <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="fixed inset-0 bg-black opacity-50"></div>
-            <div className="bg-white rounded-lg p-8 z-10 shadow-xl max-w-md w-full mx-4">
-              <p className="text-2xl text-center font-bold text-red-600">
-                {showMessage.type === 'success' 
-                  ? 'Your submission was successful! Thank you!' 
-                  : 'Error! Duplicate value entered.'}
-              </p>
+            <div className="bg-white rounded-lg p-8 z-10 shadow-xl w-1/2 max-w-2xl mx-4">
+              <div className="text-center">
+                <p className="text-4xl font-bold text-red-600 mb-8">
+                  {showMessage.type === 'success' 
+                    ? 'Your submission was successful! Thank you!' 
+                    : 'Error! Duplicate value entered.'}
+                </p>
+                <button
+                  onClick={handleClosePopup}
+                  className="bg-indigo-600 text-white py-3 px-6 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200 text-lg font-semibold"
+                >
+                  Completed / Close
+                </button>
+              </div>
             </div>
           </div>
         )}
